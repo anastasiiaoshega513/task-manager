@@ -14,6 +14,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return Project.objects.filter(owner=self.request.user).prefetch_related("tasks")
 
+
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
     form_class = ProjectForm
@@ -23,6 +24,7 @@ class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
+
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Project
     form_class = ProjectForm
@@ -31,12 +33,14 @@ class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_queryset(self):
         return Project.objects.filter(owner=self.request.user)
 
+
 class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Project
     success_url = reverse_lazy("tasks:project-list")
 
     def get_queryset(self):
         return Project.objects.filter(owner=self.request.user)
+
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
@@ -52,6 +56,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.project = project
         return super().form_valid(form)
 
+
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = TaskForm
@@ -60,12 +65,14 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_queryset(self):
         return Task.objects.filter(project__owner=self.request.user)
 
+
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("tasks:project-list")
 
     def get_queryset(self):
         return Task.objects.filter(project__owner=self.request.user)
+
 
 class TaskToggleCompleteView(LoginRequiredMixin, generic.View):
     def post(self, request, pk):

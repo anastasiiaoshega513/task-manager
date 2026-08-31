@@ -8,6 +8,7 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ["name"]
 
+
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
