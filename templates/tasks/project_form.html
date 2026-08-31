@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Create Project{% endblock %}
+{% block title %}
+  {% if object %}Update Project{% else %}Create Project{% endif %}
+{% endblock %}
 
 {% block content %}
-  <h1>Create Project</h1>
+  <h1>
+    {% if object %}Update Project{% else %}Create Project{% endif %}
+  </h1>
 
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button type="submit">Create</button>
+    <button type="submit">
+      {% if object %}Update{% else %}Create{% endif %}
+    </button>
   </form>
 
   <a href="{% url 'tasks:project-list' %}">Back</a>
