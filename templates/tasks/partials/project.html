@@ -1,0 +1,23 @@
+<div id="project-{{ project.pk }}">
+  <h2>{{ project.name }}</h2>
+  <a href="{% url 'tasks:project-update' project.pk %}">Edit</a>
+  <a href="{% url 'tasks:project-delete' project.pk %}">Delete</a>
+
+  <form
+    hx-post="{% url 'tasks:task-create' project.pk %}"
+    hx-target="#tasks-{{ project.pk }}"
+    hx-swap="outerHTML"
+  >
+    {% csrf_token %}
+    {{ task_form.as_p }}
+    <button type="submit">Add Task</button>
+  </form>
+
+  <div id="tasks-{{ project.pk }}">
+    {% for task in project.tasks.all %}
+      {% include "tasks/partials/task.html" %}
+    {% empty %}
+      <p>No tasks yet.</p>
+    {% endfor %}
+  </div>
+</div>

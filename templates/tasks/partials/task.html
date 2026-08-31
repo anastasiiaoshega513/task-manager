@@ -7,8 +7,23 @@
     <span>Done</span>
   {% endif %}
 
-  <a href="{% url 'tasks:task-update' task.pk %}">Edit</a>
-  <a href="{% url 'tasks:task-delete' task.pk %}">Delete</a>
+  <button
+    type="button"
+    hx-get="{% url 'tasks:task-update' task.pk %}"
+    hx-target="#task-{{ task.pk }}"
+    hx-swap="outerHTML"
+  >
+    Edit
+  </button>
+
+  <button
+    type="button"
+    hx-post="{% url 'tasks:task-delete' task.pk %}"
+    hx-target="#task-{{ task.pk }}"
+    hx-swap="outerHTML"
+  >
+    Delete
+  </button>
 
   <button
     type="button"

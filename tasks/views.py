@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -14,11 +15,17 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return Project.objects.filter(owner=self.request.user).prefetch_related("tasks")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["task_form"] = TaskForm()
+        return context
+
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
     form_class = ProjectForm
     success_url = reverse_lazy("tasks:project-list")
+    http_method_names = ["post"]
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
@@ -45,7 +52,6 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy("tasks:project-list")
 
     def form_valid(self, form):
         project = get_object_or_404(
@@ -54,24 +60,33 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
             owner=self.request.user,
         )
         form.instance.project = project
-        return super().form_valid(form)
+        task = form.save()
+
+        return render(self.request,"tasks/partials/task.html", {"task": task})
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy("tasks:project-list")
+    template_name = "tasks/partials/task_update_form.html"
 
     def get_queryset(self):
         return Task.objects.filter(project__owner=self.request.user)
+
+    def form_valid(self, form):
+        task = form.save()
+        return render(self.request,"tasks/partials/task.html", {"task": task})
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
-    success_url = reverse_lazy("tasks:project-list")
 
     def get_queryset(self):
         return Task.objects.filter(project__owner=self.request.user)
+
+    def form_valid(self, form):
+        self.object.delete()
+        return HttpResponse("")
 
 
 class TaskToggleCompleteView(LoginRequiredMixin, generic.View):

@@ -1,0 +1,11 @@
+<form
+  id="task-{{ object.pk }}"
+  hx-post="{% url 'tasks:task-update' object.pk %}"
+  hx-target="#task-{{ object.pk }}"
+  hx-swap="outerHTML"
+>
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button type="submit">Update</button>
+</form>

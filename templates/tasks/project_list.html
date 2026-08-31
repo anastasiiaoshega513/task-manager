@@ -5,19 +5,6 @@
   <h1>Projects</h1>
   <a href="{% url 'tasks:project-create' %}">Add Project</a>
   {% for project in projects %}
-    <div>
-      <h2>{{ project.name }}</h2>
-      <a href="{% url 'tasks:project-update' project.pk %}">Edit</a>
-      <a href="{% url 'tasks:project-delete' project.pk %}">Delete</a>
-      <a href="{% url 'tasks:task-create' project.pk %}">Add Task</a>
-
-      {% for task in project.tasks.all %}
-        {% include "tasks/partials/task.html" %}
-      {% empty %}
-        <p>No tasks yet.</p>
-      {% endfor %}
-    </div>
-  {% empty %}
-    <p>No projects yet.</p>
+    {% include "tasks/partials/project.html" %}
   {% endfor %}
 {% endblock %}
