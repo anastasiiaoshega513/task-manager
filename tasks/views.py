@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from tasks.forms import ProjectForm, TaskForm
+from tasks.forms import ProjectForm, TaskCreateForm, TaskUpdateForm
 from tasks.models import Project, Task
 
 
@@ -17,7 +17,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["task_form"] = TaskForm()
+        context["task_create_form"] = TaskCreateForm()
         return context
 
 
@@ -51,7 +51,7 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
-    form_class = TaskForm
+    form_class = TaskCreateForm
 
     def form_valid(self, form):
         project = get_object_or_404(
@@ -67,7 +67,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
-    form_class = TaskForm
+    form_class = TaskUpdateForm
     template_name = "tasks/partials/task_update_form.html"
 
     def get_queryset(self):
