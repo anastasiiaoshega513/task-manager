@@ -16,6 +16,8 @@
         <p>{{ task.name }}</p>
         <p>{{ task.deadline }}</p>
         <p>{{ task.get_priority_display }}</p>
+        <a href="{% url 'tasks:task-update' task.pk %}">Edit</a>
+        <a href="{% url 'tasks:task-delete' task.pk %}">Delete</a>
 
         {% if task.is_completed %}
           <span>Done</span>

@@ -52,4 +52,17 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.project = project
         return super().form_valid(form)
 
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("tasks:project-list")
 
+    def get_queryset(self):
+        return Task.objects.filter(project__owner=self.request.user)
+
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("tasks:project-list")
+
+    def get_queryset(self):
+        return Task.objects.filter(project__owner=self.request.user)
