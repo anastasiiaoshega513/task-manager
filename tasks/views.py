@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from tasks.forms import ProjectForm
-from tasks.models import Project
+from tasks.forms import ProjectForm, TaskForm
+from tasks.models import Project, Task
 
 
 class ProjectListView(LoginRequiredMixin, generic.ListView):
@@ -36,3 +37,19 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
 
     def get_queryset(self):
         return Project.objects.filter(owner=self.request.user)
+
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("tasks:project-list")
+
+    def form_valid(self, form):
+        project = get_object_or_404(
+            Project,
+            pk=self.kwargs["project_id"],
+            owner=self.request.user,
+        )
+        form.instance.project = project
+        return super().form_valid(form)
+
+
