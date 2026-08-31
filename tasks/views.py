@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -79,4 +79,5 @@ class TaskToggleCompleteView(LoginRequiredMixin, generic.View):
         task = get_object_or_404(Task, pk=pk, project__owner=request.user)
         task.is_completed = not task.is_completed
         task.save()
-        return redirect("tasks:project-list")
+
+        return render(request, "tasks/partials/task.html",{"task": task})

@@ -1,0 +1,21 @@
+<div id="task-{{ task.pk }}">
+  <p>{{ task.name }}</p>
+  <p>{{ task.deadline }}</p>
+  <p>{{ task.get_priority_display }}</p>
+
+  {% if task.is_completed %}
+    <span>Done</span>
+  {% endif %}
+
+  <a href="{% url 'tasks:task-update' task.pk %}">Edit</a>
+  <a href="{% url 'tasks:task-delete' task.pk %}">Delete</a>
+
+  <button
+    type="button"
+    hx-post="{% url 'tasks:task-toggle-complete' task.pk %}"
+    hx-target="#task-{{ task.pk }}"
+    hx-swap="outerHTML"
+  >
+    {% if task.is_completed %}Mark as undone{% else %}Mark as done{% endif %}
+  </button>
+</div>
