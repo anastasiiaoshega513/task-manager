@@ -1,0 +1,195 @@
+# Django
+
+*.log
+*.pot
+*.pyc
+**pycache**/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media
+
+# Python
+
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+
+*.manifest
+*.spec
+
+# Installer logs
+
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Tests / coverage
+
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+
+*.mo
+
+# Flask
+
+instance/
+.webassets-cache
+
+# Scrapy
+
+.scrapy
+
+# Documentation
+
+docs/_build/
+/site
+
+# PyBuilder
+
+.pybuilder/
+target/
+
+# Jupyter / IPython
+
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+# PDM / PEP 582
+
+.pdm.toml
+**pypackages**/
+
+# Celery
+
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath
+
+*.sage.py
+
+# Environments
+
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder
+
+.spyderproject
+.spyproject
+
+# Rope
+
+.ropeproject
+
+# Type checking
+
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Cython
+
+cython_debug/
+
+# PyCharm / JetBrains
+
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/aws.xml
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/mongoSettings.xml
+.idea/replstate.xml
+.idea/sonarlint/
+.idea/httpRequests
+.idea/caches/build_file_checksums.ser
+
+.idea/*
+!.idea/codeStyles
+!.idea/runConfigurations
+
+# CMake
+
+cmake-build-*/
+
+# IDE files
+
+*.iws
+out/
+.idea_modules/
+atlassian-ide-plugin.xml
+
+# Crashlytics
+
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Poetry
+
+poetry.toml
+
+# Ruff
+
+.ruff_cache/
+
+# LSP
+
+pyrightconfig.json
