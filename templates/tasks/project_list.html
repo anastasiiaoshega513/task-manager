@@ -3,6 +3,7 @@
 {% block title %}Projects{% endblock %}
 {% block content %}
   <h1>Projects</h1>
+  <a href="{% url 'tasks:project-create' %}">Add Project</a>
   {% for project in projects %}
     <div>
       <h2>{{ project.name }}</h2>
