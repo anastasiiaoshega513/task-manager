@@ -6,7 +6,7 @@
   <form
     hx-post="{% url 'tasks:task-create' project.pk %}"
     hx-target="#tasks-{{ project.pk }}"
-    hx-swap="outerHTML"
+    hx-swap="beforeend"
   >
     {% csrf_token %}
     {{ task_create_form.as_p }}
