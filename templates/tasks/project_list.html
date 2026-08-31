@@ -19,6 +19,13 @@
         <a href="{% url 'tasks:task-update' task.pk %}">Edit</a>
         <a href="{% url 'tasks:task-delete' task.pk %}">Delete</a>
 
+        <form method="post" action="{% url 'tasks:task-toggle-complete' task.pk %}">
+          {% csrf_token %}
+          <button type="submit">
+            {% if task.is_completed %}Mark Incomplete{% else %}Mark Complete{% endif %}
+          </button>
+        </form>
+
         {% if task.is_completed %}
           <span>Done</span>
         {% endif %}
