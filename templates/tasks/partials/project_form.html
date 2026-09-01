@@ -1,5 +1,6 @@
 <form
   {% if object %}
+    id="project-{{ object.pk }}"
     hx-post="{% url 'tasks:project-update' object.pk %}"
     hx-target="#project-{{ object.pk }}"
     hx-swap="outerHTML"
