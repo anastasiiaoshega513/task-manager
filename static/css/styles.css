@@ -156,6 +156,10 @@ body {
   font-weight: 500;
 }
 
+.task-deadline {
+  margin-left: 16px;
+}
+
 .task-update-form {
   display: flex;
   align-items: center;
@@ -213,8 +217,21 @@ body {
   font-weight: 600;
 }
 
-.task-deadline {
-  margin-left: 16px;
+.auth-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+}
+
+.auth-nav span {
+  font-weight: 600;
+}
+
+.auth-nav .btn {
+  font-size: 1.1rem;
 }
 
 @media (max-width: 576px) {

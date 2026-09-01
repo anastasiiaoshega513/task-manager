@@ -23,13 +23,30 @@
 </head>
 <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
 
-  {% if user.is_authenticated %}
-    <span>{{ user.username }}</span>
-    <a href="{% url 'account_logout' %}">Logout</a>
-  {% else %}
-    <a href="{% url 'account_login' %}">Login</a>
-    <a href="{% url 'account_signup' %}">Sign up</a>
-  {% endif %}
+  <div class="auth-nav">
+    {% if user.is_authenticated %}
+      <span>{{ user.username }}</span>
+      <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-secondary">
+          Logout
+        </button>
+      </form>
+    {% else %}
+      <a
+        class="btn btn-sm btn-outline-secondary"
+        href="{% url 'account_login' %}"
+      >
+        Login
+      </a>
+      <a
+        class="btn btn-sm btn-outline-primary"
+        href="{% url 'account_signup' %}"
+      >
+        Sign up
+      </a>
+    {% endif %}
+  </div>
 
   {% block content %}
   {% endblock %}
