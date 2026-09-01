@@ -114,15 +114,36 @@ body {
 }
 
 .task-item {
-  padding: 12px 0;
   border-bottom: 1px solid #ddd;
-  background-image:
-    linear-gradient(to right, transparent 55px, #e5d5d5 55px 56px, transparent 56px),
-    linear-gradient(to right, transparent 63px, #e5d5d5 63px 64px, transparent 64px),
-    linear-gradient(to left, transparent 107px, #ddd 107px 108px, transparent 108px);
+}
+
+.task-check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e5d5d5;
+}
+
+.task-check::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -8px;
+  width: 1px;
+  background: #e5d5d5;
+}
+
+.task-content {
+  padding: 12px 16px;
+  border-right: 1px solid #ddd;
 }
 
 .task-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   visibility: hidden;
   color: #777;
 }
@@ -205,7 +226,6 @@ body {
   padding: 16px 20px;
   background: white;
   border-radius: 6px;
-
   display: flex;
   align-items: center;
   gap: 8px;
@@ -250,10 +270,6 @@ body {
   .task-create-form button {
     padding: 0 16px;
     white-space: nowrap;
-  }
-
-  .task-item {
-    background-image: none;
   }
 
   .task-actions {

@@ -1,34 +1,36 @@
-<div id="task-{{ task.pk }}" class="task-item d-flex align-items-center">
-  <button
-    type="button"
-    class="btn ms-2 me-2"
-    style="color: #777;"
-    hx-post="{% url 'tasks:task-toggle-complete' task.pk %}"
-    hx-target="#task-{{ task.pk }}"
-    hx-swap="outerHTML"
-  >
-    {% if task.is_completed %}
-      <i class="bi bi-check-square"></i>
-    {% else %}
-      <i class="bi bi-square"></i>
-    {% endif %}
-  </button>
+<div id="task-{{ task.pk }}" class="task-item row g-0">
+  <div class="task-check col-2 col-md-1">
+    <button
+      type="button"
+      class="btn"
+      style="color: #777;"
+      hx-post="{% url 'tasks:task-toggle-complete' task.pk %}"
+      hx-target="#task-{{ task.pk }}"
+      hx-swap="outerHTML"
+    >
+      {% if task.is_completed %}
+        <i class="bi bi-check-square"></i>
+      {% else %}
+        <i class="bi bi-square"></i>
+      {% endif %}
+    </button>
+  </div>
 
-  <div class="ms-4">
+  <div class="task-content col-7 col-md-9">
     <div class="task-name">{{ task.name }}</div>
 
     <small class="task-meta">
       <span>Priority: {{ task.get_priority_display }}</span>
 
       {% if task.deadline %}
-          <span class="task-deadline">
-            Deadline: {{ task.deadline }}
-          </span>
+        <span class="task-deadline">
+          Deadline: {{ task.deadline }}
+        </span>
       {% endif %}
     </small>
   </div>
 
-  <div class="task-actions ms-auto me-3">
+  <div class="task-actions col-3 col-md-2">
     <button
       type="button"
       class="btn"
