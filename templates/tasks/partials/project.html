@@ -52,11 +52,12 @@
     </form>
   </div>
 
-  <div>
+  <div class="task-list">
     {% for task in project.tasks.all %}
       {% include "tasks/partials/task.html" %}
-    {% empty %}
-      <p class="task-name no-tasks">No tasks yet.</p>
     {% endfor %}
+
+    <p class="task-name no-tasks">No tasks yet.</p>
+
   </div>
 </div>

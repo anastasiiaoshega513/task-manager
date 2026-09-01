@@ -257,3 +257,7 @@ body {
     visibility: visible;
   }
 }
+
+.task-list:has(.task-item) .no-tasks {
+  display: none;
+}
