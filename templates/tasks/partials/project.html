@@ -30,15 +30,27 @@
     </div>
   </div>
 
-  <form
-    hx-post="{% url 'tasks:task-create' project.pk %}"
-    hx-target="#project-{{ project.pk }}"
-    hx-swap="outerHTML"
-  >
-    {% csrf_token %}
-    {{ task_create_form.as_p }}
-    <button type="submit">Add Task</button>
-  </form>
+  <div class="task-create-box">
+    <form
+      class="task-create-form"
+      hx-post="{% url 'tasks:task-create' project.pk %}"
+      hx-target="#project-{{ project.pk }}"
+      hx-swap="outerHTML"
+    >
+      {% csrf_token %}
+
+      <svg
+        class="plus-icon me-3"
+        style="stroke: #3f8f5f; filter: drop-shadow(0 -1px 0 #777);"
+        viewBox="0 0 24 24"
+      >
+        <path d="M12 4v16M4 12h16"></path>
+      </svg>
+
+      {{ task_create_form.name }}
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
 
   <div>
     {% for task in project.tasks.all %}

@@ -1,36 +1,42 @@
 <div id="task-{{ task.pk }}">
-  <p>{{ task.name }}</p>
+  <div class="d-flex align-items-center">
+    <button
+      type="button"
+      class="btn"
+      hx-post="{% url 'tasks:task-toggle-complete' task.pk %}"
+      hx-target="#task-{{ task.pk }}"
+      hx-swap="outerHTML"
+    >
+      {% if task.is_completed %}
+        <i class="bi bi-check-square"></i>
+      {% else %}
+        <i class="bi bi-square"></i>
+      {% endif %}
+    </button>
+
+    <span>{{ task.name }}</span>
+
+    <div class="ms-auto me-3">
+      <button
+        type="button"
+        hx-get="{% url 'tasks:task-update' task.pk %}"
+        hx-target="#task-{{ task.pk }}"
+        hx-swap="outerHTML"
+      >
+        Edit
+      </button>
+
+      <button
+        type="button"
+        hx-post="{% url 'tasks:task-delete' task.pk %}"
+        hx-target="#task-{{ task.pk }}"
+        hx-swap="outerHTML"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+
   <p>{{ task.deadline }}</p>
   <p>{{ task.get_priority_display }}</p>
-
-  {% if task.is_completed %}
-    <span>Done</span>
-  {% endif %}
-
-  <button
-    type="button"
-    hx-get="{% url 'tasks:task-update' task.pk %}"
-    hx-target="#task-{{ task.pk }}"
-    hx-swap="outerHTML"
-  >
-    Edit
-  </button>
-
-  <button
-    type="button"
-    hx-post="{% url 'tasks:task-delete' task.pk %}"
-    hx-target="#task-{{ task.pk }}"
-    hx-swap="outerHTML"
-  >
-    Delete
-  </button>
-
-  <button
-    type="button"
-    hx-post="{% url 'tasks:task-toggle-complete' task.pk %}"
-    hx-target="#task-{{ task.pk }}"
-    hx-swap="outerHTML"
-  >
-    {% if task.is_completed %}Mark as undone{% else %}Mark as done{% endif %}
-  </button>
 </div>

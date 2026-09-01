@@ -67,6 +67,46 @@ body {
 .plus-icon {
   width: 36px;
   height: 36px;
-  stroke: #303030;
+  stroke: #979797;
   stroke-width: 4;
+  filter: drop-shadow(0 -2px 0 #555);
+}
+
+.task-create-box {
+  background: linear-gradient(
+    to bottom,
+    #eeeeee,
+    #d7d7d7
+  );
+  padding: 12px;
+}
+
+.task-create-form {
+  display: flex;
+  align-items: center;
+}
+
+.task-create-form input {
+  flex: 1;
+  height: 36px;
+  border: 1px solid #bbb;
+  box-shadow: inset 0 2px 3px #aaa;
+  padding-left: 12px;
+}
+
+.task-create-form button {
+  height: 36px;
+  padding: 0 32px;
+  color: white;
+  background: linear-gradient(
+    to bottom,
+    #78c59b,
+    #3f7f5d
+  );
+  border: 1.5px solid #2f684a;
+  border-radius: 0 6px 6px 0;
+}
+
+.task-create-form input::placeholder {
+  color: #bbb;
 }

@@ -13,6 +13,9 @@ class TaskCreateForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ["name"]
+        widgets = {
+            "name": forms.TextInput(attrs={"placeholder": "Start typing here to create a task..."}),
+        }
 
 
 class TaskUpdateForm(forms.ModelForm):
