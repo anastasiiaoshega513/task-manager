@@ -191,9 +191,12 @@ body {
   padding: 6px 16px;
 }
 
-.add-project-button:hover,
-.add-project-button:active {
+.add-project-button:hover {
   color: white;
+}
+
+.add-project-button:active {
+  color: white !important;
 }
 
 .project-form {
