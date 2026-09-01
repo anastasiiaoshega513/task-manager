@@ -257,6 +257,21 @@ body {
   font-size: 1.1rem;
 }
 
+@media (min-width: 768px) {
+  .task-check {
+    width: 6%;
+  }
+
+  .task-content {
+    width: 84%;
+    padding-left: 26px;
+  }
+
+  .task-actions {
+    width: 10%;
+  }
+}
+
 @media (max-width: 576px) {
   .task-create-form input {
     min-width: 0;
