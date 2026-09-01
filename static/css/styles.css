@@ -212,3 +212,31 @@ body {
   color: #777;
   font-weight: 600;
 }
+
+.task-deadline {
+  margin-left: 16px;
+}
+
+@media (max-width: 576px) {
+  .task-create-form input {
+    min-width: 0;
+  }
+
+  .task-deadline {
+    display: block;
+    margin-left: 0;
+  }
+
+  .task-create-form button {
+    padding: 0 16px;
+    white-space: nowrap;
+  }
+
+  .task-item {
+    background-image: none;
+  }
+
+  .task-actions {
+    visibility: visible;
+  }
+}

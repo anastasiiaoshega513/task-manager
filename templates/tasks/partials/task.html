@@ -21,7 +21,9 @@
       <span>Priority: {{ task.get_priority_display }}</span>
 
       {% if task.deadline %}
-        <span class="ms-3">Deadline: {{ task.deadline }}</span>
+          <span class="task-deadline">
+            Deadline: {{ task.deadline }}
+          </span>
       {% endif %}
     </small>
   </div>
