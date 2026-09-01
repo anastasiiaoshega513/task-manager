@@ -1,5 +1,6 @@
 <form
   id="task-{{ object.pk }}"
+  class="task-update-form"
   hx-post="{% url 'tasks:task-update' object.pk %}"
   hx-target="#task-{{ object.pk }}"
   hx-swap="outerHTML"

@@ -62,6 +62,7 @@ body {
   font-weight: 600;
   margin-top: 20px;
   border: 1px solid #4a6f94;
+  text-shadow: 0 2px 3px #444;
 }
 
 .plus-icon {
@@ -105,8 +106,109 @@ body {
   );
   border: 1.5px solid #2f684a;
   border-radius: 0 6px 6px 0;
+  text-shadow: 0 2px 3px #444;
 }
 
 .task-create-form input::placeholder {
   color: #bbb;
+}
+
+.task-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+  background-image:
+    linear-gradient(to right, transparent 55px, #e5d5d5 55px 56px, transparent 56px),
+    linear-gradient(to right, transparent 63px, #e5d5d5 63px 64px, transparent 64px),
+    linear-gradient(to left, transparent 107px, #ddd 107px 108px, transparent 108px);
+}
+
+.task-actions {
+  visibility: hidden;
+  color: #777;
+}
+
+.task-actions button + button {
+  border-left: 1px solid #ddd;
+}
+
+.task-item:hover .task-actions {
+  visibility: visible;
+}
+
+.task-item:hover {
+  background-color: #fffdd8;
+}
+
+.no-tasks {
+  margin: 0;
+  padding: 16px 77px;
+  min-height: 60px;
+}
+
+.task-name {
+  color: #777;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.task-meta {
+  color: #888;
+  font-weight: 500;
+}
+
+.task-update-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.task-update-form p {
+  margin: 0;
+}
+
+.task-update-form label {
+  color: #777;
+  font-weight: 600;
+}
+
+.task-update-form button {
+  color: white;
+  background: linear-gradient(
+    to bottom,
+    #78c59b,
+    #3f7f5d
+  );
+  border: 1px solid #2f684a;
+  padding: 6px 18px;
+}
+
+.project-form button {
+  padding: 6px 16px;
+}
+
+.add-project-button:hover,
+.add-project-button:active {
+  color: white;
+}
+
+.project-form {
+  width: fit-content;
+  margin: 0 auto 20px;
+  padding: 16px 20px;
+  background: white;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-form p {
+  margin: 0;
+}
+
+.project-form label {
+  color: #777;
+  font-weight: 600;
 }

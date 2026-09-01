@@ -56,7 +56,7 @@
     {% for task in project.tasks.all %}
       {% include "tasks/partials/task.html" %}
     {% empty %}
-      <p>No tasks yet.</p>
+      <p class="task-name no-tasks">No tasks yet.</p>
     {% endfor %}
   </div>
 </div>
