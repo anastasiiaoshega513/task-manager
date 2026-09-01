@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse_lazy
 from django.views import generic
 
 from tasks.forms import ProjectForm, TaskCreateForm, TaskUpdateForm
@@ -24,29 +23,46 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
     form_class = ProjectForm
-    success_url = reverse_lazy("tasks:project-list")
-    http_method_names = ["post"]
+    template_name = "tasks/partials/project_form.html"
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        return super().form_valid(form)
+        project = form.save()
+
+        return render(
+            self.request,
+            "tasks/partials/project.html",
+            {"project": project, "task_create_form": TaskCreateForm()},
+        )
 
 
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Project
     form_class = ProjectForm
-    success_url = reverse_lazy("tasks:project-list")
+    template_name = "tasks/partials/project_form.html"
 
     def get_queryset(self):
         return Project.objects.filter(owner=self.request.user)
+
+    def form_valid(self, form):
+        project = form.save()
+
+        return render(
+            self.request,
+            "tasks/partials/project.html",
+            {"project": project, "task_create_form": TaskCreateForm()},
+        )
 
 
 class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Project
-    success_url = reverse_lazy("tasks:project-list")
 
     def get_queryset(self):
         return Project.objects.filter(owner=self.request.user)
+
+    def form_valid(self, form):
+        self.object.delete()
+        return HttpResponse("")
 
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):

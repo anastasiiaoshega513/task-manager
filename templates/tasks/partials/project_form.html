@@ -1,0 +1,18 @@
+<form
+  {% if object %}
+    hx-post="{% url 'tasks:project-update' object.pk %}"
+    hx-target="#project-{{ object.pk }}"
+    hx-swap="outerHTML"
+  {% else %}
+    hx-post="{% url 'tasks:project-create' %}"
+    hx-target="#projects"
+    hx-swap="beforeend"
+  {% endif %}
+>
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button type="submit">
+    {% if object %}Update{% else %}Create{% endif %}
+  </button>
+</form>

@@ -1,7 +1,23 @@
 <div id="project-{{ project.pk }}">
   <h2>{{ project.name }}</h2>
-  <a href="{% url 'tasks:project-update' project.pk %}">Edit</a>
-  <a href="{% url 'tasks:project-delete' project.pk %}">Delete</a>
+
+  <button
+    type="button"
+    hx-post="{% url 'tasks:project-delete' project.pk %}"
+    hx-target="#project-{{ project.pk }}"
+    hx-swap="outerHTML"
+  >
+    Delete
+  </button>
+
+  <button
+    type="button"
+    hx-get="{% url 'tasks:project-update' project.pk %}"
+    hx-target="#project-{{ project.pk }}"
+    hx-swap="outerHTML"
+  >
+    Edit
+  </button>
 
   <form
     hx-post="{% url 'tasks:task-create' project.pk %}"
