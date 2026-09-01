@@ -1,0 +1,15 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #d6d5ca, #e89a00);
+}
+
+.project-card {
+  background: white;
+  margin-bottom: 24px;
+}
+
+.project-header {
+  padding: 12px 16px;
+  background: #356aa0;
+  color: white;
+}
