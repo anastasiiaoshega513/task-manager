@@ -10,7 +10,7 @@ class ProjectForm(forms.ModelForm):
         widgets = {
             "name": forms.TextInput(
                 attrs={
-                    "_": "on load focus() me",
+                    "_": "init focus me",
                 }
             ),
         }
