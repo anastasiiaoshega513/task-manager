@@ -134,6 +134,16 @@ Run all configured checks manually:
 pre-commit run --all-files
 ```
 
+## Tests
+
+The project includes basic tests covering core functionality and access control.
+
+Run the tests with Docker:
+
+```bash
+docker compose exec web python manage.py test
+```
+
 ## SQL
 
 The repository also contains solutions to the additional SQL exercises.
