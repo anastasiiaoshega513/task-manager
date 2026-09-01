@@ -76,9 +76,26 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
             owner=self.request.user,
         )
         form.instance.project = project
-        task = form.save()
+        form.save()
 
-        return render(self.request, "tasks/partials/task.html", {"task": task})
+        return render(
+            self.request,
+            "tasks/partials/project.html",
+            {"project": project, "task_create_form": TaskCreateForm()},
+        )
+
+    def form_invalid(self, form):
+        project = get_object_or_404(
+            Project,
+            pk=self.kwargs["project_id"],
+            owner=self.request.user,
+        )
+
+        return render(
+            self.request,
+            "tasks/partials/project.html",
+            {"project": project, "task_create_form": form},
+        )
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):

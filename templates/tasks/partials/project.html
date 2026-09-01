@@ -21,15 +21,15 @@
 
   <form
     hx-post="{% url 'tasks:task-create' project.pk %}"
-    hx-target="#tasks-{{ project.pk }}"
-    hx-swap="beforeend"
+    hx-target="#project-{{ project.pk }}"
+    hx-swap="outerHTML"
   >
     {% csrf_token %}
     {{ task_create_form.as_p }}
     <button type="submit">Add Task</button>
   </form>
 
-  <div id="tasks-{{ project.pk }}">
+  <div>
     {% for task in project.tasks.all %}
       {% include "tasks/partials/task.html" %}
     {% empty %}

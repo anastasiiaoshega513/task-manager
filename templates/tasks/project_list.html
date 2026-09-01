@@ -7,12 +7,11 @@
   <button
     type="button"
     hx-get="{% url 'tasks:project-create' %}"
-    hx-target="#project-create"
+    hx-target="#projects"
+    hx-swap="beforeend"
   >
     Add Project
   </button>
-
-  <div id="project-create"></div>
 
   <div id="projects">
     {% for project in projects %}

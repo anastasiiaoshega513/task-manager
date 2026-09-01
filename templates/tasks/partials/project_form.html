@@ -6,8 +6,8 @@
     hx-swap="outerHTML"
   {% else %}
     hx-post="{% url 'tasks:project-create' %}"
-    hx-target="#projects"
-    hx-swap="beforeend"
+    hx-target="this"
+    hx-swap="outerHTML"
   {% endif %}
 >
   {% csrf_token %}
