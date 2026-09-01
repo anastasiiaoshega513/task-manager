@@ -1,4 +1,5 @@
 <form
+  x-data
   class="project-form"
   {% if object %}
     id="project-{{ object.pk }}"
@@ -22,7 +23,7 @@
     <button
       type="button"
       class="btn btn-outline-secondary"
-      onclick="this.closest('form').remove()"
+      @click="$root.remove()"
     >
       Cancel
     </button>
