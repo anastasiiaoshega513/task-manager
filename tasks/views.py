@@ -78,7 +78,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.project = project
         task = form.save()
 
-        return render(self.request,"tasks/partials/task.html", {"task": task})
+        return render(self.request, "tasks/partials/task.html", {"task": task})
 
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -91,7 +91,7 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def form_valid(self, form):
         task = form.save()
-        return render(self.request,"tasks/partials/task.html", {"task": task})
+        return render(self.request, "tasks/partials/task.html", {"task": task})
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -111,4 +111,4 @@ class TaskToggleCompleteView(LoginRequiredMixin, generic.View):
         task.is_completed = not task.is_completed
         task.save()
 
-        return render(request, "tasks/partials/task.html",{"task": task})
+        return render(request, "tasks/partials/task.html", {"task": task})
