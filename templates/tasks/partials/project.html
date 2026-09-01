@@ -1,13 +1,13 @@
 <div
   id="project-{{ project.pk }}"
-  class="project-card mb-4"
+  class="project-card"
 >
   <div class="project-header d-flex justify-content-between align-items-center">
     <h2 class="project-title mb-0">
-      <i class="bi bi-calendar2-week" style="color: #303030;"></i> {{ project.name }}
+      <i class="bi bi-calendar2-week me-2" style="color: #303030;"></i> {{ project.name }}
     </h2>
 
-    <div>
+    <div class="project-actions">
       <button
         type="button"
         class="btn text-white"
