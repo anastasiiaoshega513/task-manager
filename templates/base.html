@@ -11,6 +11,15 @@
   <title>{% block title %}Task Manager{% endblock %}</title>
 </head>
 <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+
+  {% if user.is_authenticated %}
+    <span>{{ user.username }}</span>
+    <a href="{% url 'account_logout' %}">Logout</a>
+  {% else %}
+    <a href="{% url 'account_login' %}">Login</a>
+    <a href="{% url 'account_signup' %}">Sign up</a>
+  {% endif %}
+
   {% block content %}
   {% endblock %}
 </body>
